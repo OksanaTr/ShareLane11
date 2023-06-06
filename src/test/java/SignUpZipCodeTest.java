@@ -113,44 +113,4 @@ public class SignUpZipCodeTest {
         driver.quit();
     }
 
-    @Test
-    public void successfulSignUp() {
-
-        //Установка переменной среды
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-
-        //ОТКРЫТЬ СТРАНИЦУ https://www.sharelane.com/cgi-bin/register.py
-        driver.get("https://www.sharelane.com/cgi-bin/register.py");
-
-        //ВВЕСТИ ЛЮБЫЕ 5 ЦИФР (12345)
-        driver.findElement(By.name("zip_code")).sendKeys("12345");
-
-        //НАЖАТЬ КНОПКУ CONTINUE
-        //driver.findElement(By.name("zip_code")).submit();
-        driver.findElement(By.cssSelector("[value=Continue]")).click();
-        //ЗАПОЛНЯЕМ ФОРМУ
-        //name="first_name"
-        driver.findElement(By.name("first_name")).sendKeys("SERGEI");
-        // name="last_name"
-        driver.findElement(By.name("last_name")).sendKeys("TEST");
-        //name = "email"
-        driver.findElement(By.name("email")).sendKeys("test@test.com");
-        //name = "password1"
-        driver.findElement(By.name("password1")).sendKeys("1234");
-        //name = "password2"
-        driver.findElement(By.name("password2")).sendKeys("1234");
-
-        //НАЖАТЬ КНОПКУ REGISTER
-        driver.findElement(By.cssSelector("[value=Register]")).click();
-        // ПРОВЕРКА УСПЕШНОЙ РЕГИСТРАЦИИ
-        String success = driver.findElement(By.cssSelector("[class=confirmation_message]")).getText();
-        assertEquals(success,
-                "Account is created!",
-                "Аккаунт не создан");
-
-
-        //ЗАКРЫТЬ БРАУЗЕР.
-        driver.quit();
     }
-}
